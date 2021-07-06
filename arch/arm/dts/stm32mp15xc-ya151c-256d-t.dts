@@ -1,0 +1,40 @@
+// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
+/*
+ * Copyright (C) myir - All Rights Reserved
+ * 
+ */
+
+/dts-v1/;
+
+#include "stm32mp157.dtsi" //stm32mp151.dtsi
+#include "stm32mp15xa.dtsi"
+#include "stm32mp15-ya15xc-t-pinctrl.dtsi"
+#include "stm32mp15xxac-pinctrl.dtsi"
+#include "stm32mp15xx-ya15xc-t.dtsi"
+
+/ {
+	model = "MYIRTECH MYD-YA151C-256D-t Development Board";
+	compatible = "st,stm32mp15xc-ya151c-t", "st,stm32mp157";
+	aliases {
+		ethernet0 = &ethernet0;
+		serial0 = &uart4;
+	};
+	
+	memory@c0000000 {
+		device_type = "memory";
+		reg = <0xc0000000 0x10000000>;
+	};
+
+	chosen {
+		stdout-path = "serial0:115200n8";
+	};
+
+	reserved-memory {
+		optee_memory: optee@0xde000000 {
+			reg = <0xde000000 0x02000000>;
+			no-map;
+		};
+	};
+	
+};
+
